@@ -46,7 +46,12 @@ main > div > p {
     background-color: #798546;
     font-size: 3rem;
     border-radius: 20px;
-    line-height: 0
+    line-height: 0;
+}
+
+.visit-a {
+    text-decoration: none;
+    color: whitesmoke
 }
 
 .visit > p {

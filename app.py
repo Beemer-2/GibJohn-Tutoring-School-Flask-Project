@@ -6,6 +6,13 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/log-in-sign-up-page")
+def log_in_sign_up():
+    return render_template("log-in-sign-up-page.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

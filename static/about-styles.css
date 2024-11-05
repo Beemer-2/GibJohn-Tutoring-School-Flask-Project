@@ -1,0 +1,52 @@
+#first-container {
+    background-color: #5e6b45;
+    margin: 12vh 14vw;
+    padding: 30px;
+    border-radius: 20px;
+    color: whitesmoke;
+    font-size: xx-large;
+}
+
+#second-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    background-color: #798546;
+    margin: 12vh 14vw;
+    padding: 20px 20px;
+    gap: 20px;
+    border-radius: 12px;
+    margin-bottom: 120px;
+}
+
+#second-container > div {
+    background-color: #5e6b45;
+    border-radius: 12px;
+    text-align: center;
+    font-size: x-large;
+    color: whitesmoke
+
+}
+
+#second-container > div > div > p {
+    padding: 20px;
+}
+
+.visit {
+    font-size: xx-large;
+    background-color:#798546;
+    margin: 12px;
+    border-radius: 7px;
+}
+
+#second-container > div > div > a {
+    text-decoration: none;
+    color: whitesmoke;
+    margin-top: auto;
+}
+
+#second-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    
+}
