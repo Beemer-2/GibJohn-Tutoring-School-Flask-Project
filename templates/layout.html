@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="../static/layout-styles.css">
+    <link rel="stylesheet" href="../static/global-css.css">
+    {% block css_link %}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {% block header %}
+        <nav>
+            <div id="left-nav">
+                <ul><a href="">home</a></ul>
+                <ul><a href="">about</a></ul>
+                <ul><a href="">lessons</a></ul>
+                <ul><a href="">teachers</a></ul>
+                <ul><a href="">admins</a></ul>
+            </div>
+            <div id="right-nav">
+                <ul><a href="">log-in</a></ul>
+                <ul><a href="">sign-up</a></ul>
+            </div>
+        </nav>
+        {% endblock %}
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+        <p>GibJohn Tutoring 2024 &copy;</p>
+    </footer>
+</body>
+</html>                                        

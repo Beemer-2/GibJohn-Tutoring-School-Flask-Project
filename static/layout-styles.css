@@ -1,0 +1,56 @@
+/* add comments!!!! */
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav > div {
+    display: flex;
+}
+
+nav > div > ul {
+    padding: 12px 38px;
+    margin: 18px;
+    background-color: #5e6b45;
+    border-radius: 14px;
+    font-size: x-large;
+}
+
+nav {
+    padding: 6px;
+}
+
+nav > div > ul > a {
+    text-decoration: none; 
+    color: whitesmoke   
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    color: whitesmoke;
+    background-color: #798546;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    background-color: #5e6b45;
+    color: whitesmoke;
+}
+
+footer > p {
+    margin-right: 30px;
+    font-size: x-large;
+}
+
+body {
+    background-color: #fffce9;
+}
+
+main {
+    margin-top: 200px;
+}

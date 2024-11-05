@@ -1,0 +1,15 @@
+* {
+    font-family: sans-serif, Verdana, Geneva, Cambria;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    height: 100vh;
+    height: 100svh;
+}
+
+main {
+    height: 100vh;
+    height: 100svh;
+}

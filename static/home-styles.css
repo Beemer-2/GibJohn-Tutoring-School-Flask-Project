@@ -1,0 +1,55 @@
+
+
+#main-div {
+    min-height: 36vh;
+    min-height: 36svh;
+    max-height: fit-content;
+    width: 90vw;
+    border-radius: 20px;
+    margin: 80px 0px;
+    background-color: #5e6b45;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 20px;
+    color: whitesmoke;
+    font-size: xx-large;
+
+}
+
+main > div > p {
+    padding-left: 15px;
+}
+
+#one-by-two-div {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    gap: 194px;
+}
+
+#one-by-two-div > div {
+    min-height: 18vh;
+    min-height: 18svh;
+    max-height: fit-content;
+    width: 42vw;
+    border-radius: 20px;
+    margin: 30px 0px;
+    background-color: #5e6b45;
+    padding: 8px 20px;
+    color: whitesmoke;
+    font-size: x-large;
+}
+
+.visit {
+    padding: 40px 10px;
+    margin-bottom: 14px;
+    background-color: #798546;
+    font-size: 3rem;
+    border-radius: 20px;
+    line-height: 0
+}
+
+.visit > p {
+    margin: 0;
+    text-align: center;
+}
