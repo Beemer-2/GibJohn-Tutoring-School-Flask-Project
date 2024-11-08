@@ -25,6 +25,8 @@ main > div > p {
     justify-content: center;
     align-items: top;
     gap: 194px;
+    margin-bottom: 14vh;
+    margin-bottom: 14svh;
 }
 
 #one-by-two-div > div {
