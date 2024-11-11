@@ -25,7 +25,7 @@ def create_account():
         data = request.form
         database = sqlite3.connect("database/main.db")
         db_cursor = database.cursor()
-
+        
         date = datetime.datetime.now()
 
         email = data.get("email")
