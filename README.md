@@ -1,1 +1,1 @@
-This is a school project used to learn flask and log-in systems. All data is dummy data and is not being used by real users.
+This is a school project used to learn flask and log-in systems. All data is dummy data and is not being used by real users. Even the database included is all fake. 
