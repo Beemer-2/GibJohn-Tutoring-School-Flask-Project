@@ -22,8 +22,13 @@
                 <ul><a href="">admins</a></ul>
             </div>
             <div id="right-nav">
+                {% if not username and username is not defined or username == None %}
                 <ul><a href="log-in-sign-up-page">log-in</a></ul>
                 <ul><a href="log-in-sign-up-page">sign-up</a></ul>
+                {% else %}
+                <ul>Welcome, {{ username }}</ul>
+                <ul><a href="log-out">Log out</a></ul>
+                {% endif %}
             </div>
         </nav>
         {% endblock %}

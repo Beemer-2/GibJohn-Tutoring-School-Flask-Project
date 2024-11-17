@@ -54,3 +54,16 @@ form > input {
 body {
     height: max-content
 }
+
+#log-in-first {
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 60vw;
+    margin: auto;
+    font-size: xx-large;
+    text-align: center;
+    background-color: #798546;
+    border: #5e6b45 10px solid;
+    border-radius: 20px;
+}

@@ -12,7 +12,7 @@
     margin-right: auto;
     padding: 8px 20px;
     color: whitesmoke;
-    font-size: xx-large;
+    font-size: x-large;
 
 }
 
@@ -24,7 +24,7 @@ main > div > p {
     display: flex;
     justify-content: center;
     align-items: top;
-    gap: 194px;
+    gap: 10vw;
     margin-bottom: 14vh;
     margin-bottom: 14svh;
 }
@@ -46,7 +46,7 @@ main > div > p {
     padding: 40px 10px;
     margin-bottom: 14px;
     background-color: #798546;
-    font-size: 3rem;
+    font-size: 2.4rem;
     border-radius: 20px;
     line-height: 0;
 }
@@ -59,4 +59,16 @@ main > div > p {
 .visit > p {
     margin: 0;
     text-align: center;
+}
+
+@media (max-width: 1200px) {
+    #main-div, #one-by-two-div > div {
+        font-size: large;
+    }
+
+    .visit {
+        padding: 24px 10px;
+        border-radius: 8px;
+        font-size: xx-large !important;
+    }
 }

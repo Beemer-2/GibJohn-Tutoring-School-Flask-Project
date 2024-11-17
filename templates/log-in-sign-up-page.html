@@ -2,6 +2,7 @@
 {% block title %}Log-in/Sign-up{% endblock %}
 {% block css_link %}<link rel="stylesheet" href="../static/log-in-sign-up-styles.css">{% endblock %}
 {% block content %}
+{% if not username and username is not defined or username == None%}
 <div id="main-container">
     <script defer src="../static/log-in-sign-up.js"></script>
     <div class="sub-containers">
@@ -36,4 +37,9 @@
         <div class="sign-up-log-in-box" id="log-in-box">Log-in</div>
     </div>
 </div>
+{% else %}
+<div id="log-in-first">
+    <p>You cannot log into another account whilst being logged into one already. Please <a href="log-out">log-out</a> first.</p>
+</div>
+{% endif %}
 {% endblock %}

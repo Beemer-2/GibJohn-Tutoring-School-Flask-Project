@@ -1,3 +1,4 @@
 database/
 database/main.db
 tester.py
+flask_session/

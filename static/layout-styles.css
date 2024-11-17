@@ -10,7 +10,7 @@ nav > div {
 
 nav > div > ul {
     padding: 12px 38px;
-    margin: 18px;
+    margin: 12px;
     background-color: #5e6b45;
     border-radius: 14px;
     font-size: x-large;
@@ -44,8 +44,8 @@ footer {
 }
 
 footer > p {
-    margin-right: 30px;
-    font-size: x-large;
+    margin: 10px 14px;
+    font-size: large;
 }
 
 body {
@@ -54,4 +54,75 @@ body {
 
 main {
     margin: 200px 0px;
+}
+
+
+@media (max-width: 1400px) {
+    nav > div > ul {
+        padding: 8px 24px;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+    footer > p {
+        font-size: small;
+        margin: 10px 12px
+    }
+}
+
+@media (max-width: 1200px) {
+    nav > div > ul {
+        padding: 6px 18px;
+    }
+}
+
+
+@media (max-width: 1080px) {
+    nav {
+        display: grid;
+        grid-template-rows: auto auto;
+        justify-content: center;
+    } 
+    nav > div {
+        justify-content: space-between;
+    }
+    nav > div > ul {
+        margin: 9px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 650px) {
+    nav > div > ul {
+        margin: 7px;
+        font-size: medium;
+        border-radius: 9px;
+    }
+} 
+
+@media (max-width: 510px) {
+    nav > div > ul {
+        margin: 2px;
+        font-size: small;
+        padding: 3px 9px;
+    }
+}
+
+@media (max-width: 220px) {
+    nav > div > ul {
+        margin: 1px;
+        font-size: small;
+        padding: 2px 6px;
+    }
+}
+
+@media (max-width: 120px) {
+    nav > div > ul {
+        margin: 1px;
+        font-size: smaller;
+        padding: 1px 3px;
+    }
 }

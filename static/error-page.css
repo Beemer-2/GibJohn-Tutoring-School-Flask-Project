@@ -1,0 +1,39 @@
+body > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+    border: 10px solid #5e6b45;
+    background-color: #798546;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    font-size: xx-large;
+}
+
+p {
+    margin-top: 0px;
+    margin-bottom: 12px;
+}
+
+div > div {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    background-color:#5e6b45;
+    text-align: center;
+    padding: 6px;
+    width: 100%;
+    border-radius: 7px;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+* {
+    color: whitesmoke !important
+}
