@@ -35,5 +35,9 @@ a {
 }
 
 * {
-    color: whitesmoke !important
+    color: whitesmoke !important;
+}
+
+body {
+    background-color: #fffce9;
 }
