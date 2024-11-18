@@ -2,6 +2,7 @@
 nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 nav > div {
@@ -41,11 +42,15 @@ footer {
     width: 100%;
     background-color: #5e6b45;
     color: whitesmoke;
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 footer > p {
     margin: 10px 14px;
     font-size: large;
+    margin-left: 5px;
 }
 
 body {
