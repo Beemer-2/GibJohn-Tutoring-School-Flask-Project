@@ -1,40 +1,45 @@
 {% extends "layout.html" %}
 {% block title %}Teachers{% endblock %}
-{% block css_link %}<link rel="stylesheet" href="../static/Teachers-styles.css">{% endblock %}
+{% block css_link %}<link rel="stylesheet" href="../static/teachers-styles.css">{% endblock %}
 {% block content %}
 
 {% if not username and username is not defined or username == None %}
-<div id="sign-in-container">
-    <p>Please <a href="log-in-sign-up">log-in</a> to visit this page</p>
+<div class="error-container">
+    <p>Please <a href="log-in-sign-up-page">log-in</a> to visit this page</p>
 </div>
 {% else %}
-<div id="main-container">
-    <div>
-        <div><h1>Welcome {{username}}</h1></div>
+    {% if username in teachers %}
+    <div id="main-container">
         <div>
-            <h2>Courses</h2>
+            <div><h1>Welcome {{username}}</h1></div>
             <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum illum aspernatur laboriosam. Vero explicabo ut perspiciatis, magnam non repellendus ex.</p>
-                <p>Officia earum perspiciatis reprehenderit voluptas aut exercitationem temporibus ducimus, beatae voluptates ipsam. Laudantium consequuntur nam similique perspiciatis harum blanditiis libero.</p>
-                <p>Veritatis odio accusamus quos veniam distinctio ex. Accusantium voluptatem facere molestias eius quisquam esse nulla! Dignissimos sapiente cum quia distinctio?</p>
-                <p>Adipisci sint eligendi, neque laborum quod pariatur quo eaque eveniet beatae blanditiis porro sequi laudantium odio repellat! Aut, recusandae ut!</p>
-                <p>Alias, ducimus ipsa? Velit animi ipsum perferendis earum deserunt nesciunt aliquam ducimus officia. Reprehenderit porro neque ab, eveniet obcaecati illum.</p>
+                <h2>Courses</h2>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum illum aspernatur laboriosam. Vero explicabo ut perspiciatis, magnam non repellendus ex.</p>
+                    <p>Officia earum perspiciatis reprehenderit voluptas aut exercitationem temporibus ducimus, beatae voluptates ipsam. Laudantium consequuntur nam similique perspiciatis harum blanditiis libero.</p>
+                    <p>Veritatis odio accusamus quos veniam distinctio ex. Accusantium voluptatem facere molestias eius quisquam esse nulla! Dignissimos sapiente cum quia distinctio?</p>
+                    <p>Adipisci sint eligendi, neque laborum quod pariatur quo eaque eveniet beatae blanditiis porro sequi laudantium odio repellat! Aut, recusandae ut!</p>
+                    <p>Alias, ducimus ipsa? Velit animi ipsum perferendis earum deserunt nesciunt aliquam ducimus officia. Reprehenderit porro neque ab, eveniet obcaecati illum.</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Students</h2>
+            <div>
+                {% for student in students %}
+                <div> 
+                   <h3>{{student.name}}</h3>
+                   <p>Student {{student.name}} is working on </a href="/{{student.recent-course}}">{{student.recent-course}}</a></p>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <div>
-        <h2>Students</h2>
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+    {% else %}
+    <div class="error-container">
+        <p>You are not signed-in to a teachers account. Please sign-in to one or <a href="request-access-teachers">request-access</a>.</p>
     </div>
-</div>
+    {% endif %}
 {% endif %}
 
 {% endblock %}

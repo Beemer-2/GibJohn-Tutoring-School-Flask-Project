@@ -31,7 +31,35 @@ def lessons():
 
 @app.route("/teachers")
 def teachers():
-    return render_template("teachers.html", username = session.get("username"))
+    teachers_database = sqlite3.connect("database/teachers.db")
+    teachers_database_cursor = teachers_database.cursor()
+    all_teachers = teachers_database_cursor.execute("SELECT * FROM teachers").fetchall()
+
+    all_teachers_list = []
+
+    for teacher_tuple in all_teachers:
+        all_teachers_list.append(teacher_tuple[0])
+
+    print(all_teachers_list)
+
+    teachers_database.close()
+
+    return render_template("teachers.html", teachers = all_teachers_list, username = session.get("username"))
+
+@app.route("/request-access-teachers")
+def request_access_teachers():
+    requested_teachers_database = sqlite3.connect("database/requested-teachers.db")
+    requested_teachers_database_cursor = requested_teachers_database.cursor()
+
+    requested_teachers_database_cursor.execute("INSERT INTO requested (username) VALUES (?)", (session.get("username"),))
+
+    requested_teachers_database.commit()
+    requested_teachers_database.close()
+    
+    return render_template("request-access-teachers.html")
+
+
+
 
 @app.route("/log-in-sign-up-page")
 def log_in_sign_up():
