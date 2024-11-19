@@ -1,0 +1,15 @@
+#main-container {
+    margin: 20%;
+    background-color: #798546;
+    border: 10px solid #5e6b45;
+    display: flex;
+    border-radius: 10px;
+}
+
+#main-container > div {
+    display: flex;
+    flex-direction: column;
+    background-color: #798546;
+    border: 10px solid #5e6b45;
+    border-radius: 10px;
+}

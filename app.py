@@ -25,6 +25,14 @@ def home():
 def about():
     return render_template("about.html", username = session.get("username"))
 
+@app.route("/lessons")
+def lessons():
+    return render_template("lessons.html", username = session.get("username"))
+
+@app.route("/teachers")
+def teachers():
+    return render_template("teachers.html", username = session.get("username"))
+
 @app.route("/log-in-sign-up-page")
 def log_in_sign_up():
     return render_template("log-in-sign-up-page.html", username = session.get("username"))

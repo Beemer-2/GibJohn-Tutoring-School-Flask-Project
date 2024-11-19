@@ -13,9 +13,9 @@
     width: 40%;
     display: flex;
     flex-direction: column;
+    gap: auto;
     justify-content: space-between;
-    gap: 30px;
-    height: 780px;
+    height: 910px;
 }
 
 .sub-containers > div {
@@ -66,4 +66,15 @@ body {
     background-color: #798546;
     border: #5e6b45 10px solid;
     border-radius: 20px;
+}
+
+@media (max-width: 1060px) {
+    #main-container {
+        flex-direction: column;
+    }
+
+    .sub-containers {
+        width: 80%;
+        height: 820px
+    }
 }
