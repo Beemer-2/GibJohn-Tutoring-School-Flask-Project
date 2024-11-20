@@ -1,0 +1,39 @@
+#main-container {
+    background-color: #5e6b45;
+    padding: 4px;
+    width: 80vw;
+    margin: 10vw;
+    border-radius: 12px;
+    display: flex;
+    color: whitesmoke
+}
+
+.seperate {
+    margin: 10px;
+    background-color: #798546;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.seperate > div > p {
+    margin: 8px 4px;
+}
+
+.seperate > div {
+    background-color: #5e6b45;
+    padding: 4px;
+    border-radius: 7px;
+}
+
+
+h2 {
+    margin-top: 6px;
+    background-color: #5e6b45;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: fit-content;
+}
+
+#lessons-owned {
+    min-width: 54vw;
+}

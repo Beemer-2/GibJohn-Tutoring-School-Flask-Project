@@ -24,6 +24,7 @@
 #courses-p-container {
     max-height: 450px;
     overflow-y: scroll;
+    scrollbar-width: thin;
 }
 
 .seperate {
@@ -67,6 +68,7 @@ h2 {
     width: 38vw;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
 
 #students-container {
