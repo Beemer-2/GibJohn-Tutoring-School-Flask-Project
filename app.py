@@ -1,6 +1,11 @@
 ########################################
 ##  GibJohn Tutoring Site's Back-end  ##
 ########################################
+##Made for Python version 3.12.4
+##Modules needing to be installed are:
+##Flask
+##Flask-session
+##bcrypt
 
 #Imports all necessary modules
 from flask import Flask, render_template, redirect, url_for, request, session
@@ -45,14 +50,13 @@ def teachers():
 
     if session.get("username") == user_teacher_check:
         
-        #Gets all the students from the main database for use in the "students" part on the teachers' page.
-        all_users_database = sqlite3.connect("database/main.db")
-        all_users_database_cursor = all_users_database.cursor()
+        #Gets all the students and their last worked on course from the main database for use in the "students" part on the teachers' page.
+        last_working_on_database = sqlite3.connect("database/last-working-on.db")
+        last_working_on_database_cursor = last_working_on_database.cursor()
 
-        all_students_list = [user[0] for user in all_users_database.execute("SELECT username FROM users WHERE typeOfUser='student'").fetchall()] #Puts all students from the database in a list, instead of the weird tuple format.
-        print(all_students_list)
+        all_students_list = last_working_on_database_cursor.execute("SELECT username, lastWorkingOn FROM usersLast").fetchall()
 
-        all_users_database.close()
+        last_working_on_database_cursor.close()
 
         teachers_database.close()
         return render_template("teachers.html", username = session.get("username"), students = all_students_list)
@@ -102,7 +106,7 @@ def create_account():
 
         #Ensures the number entered is a number and nothing else
         phoneNum = data.get("phoneNum")
-        print(phoneNum)
+        ###print(phoneNum)
         try:
             int(phoneNum)
         except:
@@ -110,7 +114,7 @@ def create_account():
 
         #Gets the last user entered into the database's ID
         current_ID = db_cursor.execute("SELECT ID FROM users WHERE ID=(SELECT max(ID) FROM users);").fetchall()[0][0] + 1
-        print(current_ID)
+        ###print(current_ID)
 
         password_len = len(data.get("password"))
 
@@ -121,15 +125,17 @@ def create_account():
 
         #Generates the salt
         salt = bcrypt.gensalt()
-        print(salt)
+        ###print(salt)
 
         password = bcrypt.hashpw(data.get("password").encode("utf-8"), salt)
+
+        username = data.get("username")
 
         #Inserts the entered data into the database as a new user. Generates a hash for the password in the process.
         db_cursor.execute("""INSERT INTO users 
                       (username, password, ID, email, phoneNum, creationDate, lessonsOwned, typeOfUser) 
                       VALUES (?,?,?,?,?,?,?,?)"""
-                      , (data.get("username"), password, current_ID, email, phoneNum, date, 0, "student"))
+                      , (username, password, current_ID, email, phoneNum, date, 0, "student"))
 
 
         #Saves the changes
@@ -138,7 +144,16 @@ def create_account():
         db_cursor.close()
         database.close()
 
-        session["username"] = data.get("username")
+
+        #Sets up a session to keep the user logged-in
+        session["username"] = username
+
+        last_working_on_database = sqlite3.connect("database/last-working-on.db")
+        last_working_on_database_cursor = last_working_on_database.cursor()
+        last_working_on_database_cursor.execute("INSERT INTO usersLast (username, lastWorkingOn) VALUES (?,?)", (username, "N/A"))
+        last_working_on_database.commit()
+        last_working_on_database.close()
+
 
         return render_template("home.html", username = session.get("username"))
     

@@ -1,0 +1,16 @@
+.error-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #798546;
+    border: 10px solid #5e6b45;
+    border-radius: 8px;
+    width: fit-content;
+    padding: 0px 8px;
+    font-size: xx-large;
+    margin: auto;
+}
+
+.error-container > p {
+    margin: 20px 10px;
+}

@@ -4,28 +4,36 @@
 {% block content %}
 
 <div id="main-container">
-    <div>
-        <div><h1>Welcome {{username}}</h1></div>
-        <div>
-            <h2>Courses</h2>
-            <div>
+    <div id="courses-username-container">
+        <div class="seperate">
+            <h1>Welcome, {{username}}</h1>
+        </div>
+        <div class="seperate">
+            <h2 id="courses-h2">Courses</h2>
+            <div id="courses-p-container">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum illum aspernatur laboriosam. Vero explicabo ut perspiciatis, magnam non repellendus ex.</p>
                 <p>Officia earum perspiciatis reprehenderit voluptas aut exercitationem temporibus ducimus, beatae voluptates ipsam. Laudantium consequuntur nam similique perspiciatis harum blanditiis libero.</p>
                 <p>Veritatis odio accusamus quos veniam distinctio ex. Accusantium voluptatem facere molestias eius quisquam esse nulla! Dignissimos sapiente cum quia distinctio?</p>
                 <p>Adipisci sint eligendi, neque laborum quod pariatur quo eaque eveniet beatae blanditiis porro sequi laudantium odio repellat! Aut, recusandae ut!</p>
-                <p>Alias, ducimus ipsa? Velit animi ipsum perferendis earum deserunt nesciunt aliquam ducimus officia. Reprehenderit porro neque ab, eveniet obcaecati illum.</p>
+                <p id="last-p">Alias, ducimus ipsa? Velit animi ipsum perferendis earum deserunt nesciunt aliquam ducimus officia. Reprehenderit porro neque ab, eveniet obcaecati illum.</p>
             </div>
         </div>
     </div>
-    <div>
-        <h2>Students</h2>
-        <div>
-            {% for student in students %}
-            <div> 
-               <h3>{{student.name}}</h3>
-               <p>Student {{student.name}} was last working on </a href="/{{student.recent-course}}">{{student.name}}</a></p>
+    <div class="seperate" id="students">
+        <h2 id="students-h2">Students</h2>
+            <div id="all-students-container">
+                <div id="students-container">
+                    <!--Makes a div for each student in the database.-->
+                    <!--Students[0] is the name and students[1] is the most recently used course.-->
+                    <!--This is due to students being a list with a name and a recent course.-->
+                    {% for student in students %}
+                    <div class="student"> 
+                       <h3>{{student[0]}}</h3>
+                       <p>Student {{student[0]}} was last working on </a href="/{{student[1]}}">{{student[1]}}</a></p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
