@@ -3,7 +3,7 @@ import sqlite3
 def create_database():
     database = sqlite3.connect("database/main.db")
     db_cursor = database.cursor()
-    db_cursor.execute("CREATE TABLE users (username VARCHAR UNIQUE, password VARCHAR, ID INT UNIQUE, email VARCHAR, phoneNum INT, creationDate DATETIME, lessonsOwned VARCHAR)")
+    db_cursor.execute("CREATE TABLE users (username VARCHAR UNIQUE, password VARCHAR, ID INT UNIQUE, email VARCHAR, phoneNum INT, creationDate DATETIME, lessonsOwned VARCHAR, typeOfUser VARCHAR)")
     database.commit()
     database.close()
 
@@ -18,9 +18,9 @@ def initialise_database():
     date = datetime.datetime.now()
 
     db_cursor.execute("""INSERT INTO users 
-                     (username, password, ID, email, phoneNum, creationDate, lessonsOwned) 
-                     VALUES (?,?,?,?,?,?,?)"""
-                    , ("Bob", "thisIsATest", 1, "abc@example.com", 123456789, date, 0))
+                     (username, password, ID, email, phoneNum, creationDate, lessonsOwned, typeOfUser) 
+                     VALUES (?,?,?,?,?,?,?,?)"""
+                    , ("Bob", "thisIsATest", 1, "abc@example.com", 123456789, date, 0, "student"))
     print(db_cursor.fetchall())
     database.commit()
     database.close()

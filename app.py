@@ -31,20 +31,35 @@ def lessons():
 
 @app.route("/teachers")
 def teachers():
-    teachers_database = sqlite3.connect("database/teachers.db")
+    teachers_database = sqlite3.connect("database/main.db")
     teachers_database_cursor = teachers_database.cursor()
-    all_teachers = teachers_database_cursor.execute("SELECT * FROM teachers").fetchall()
 
-    all_teachers_list = []
+    user_teacher_check = teachers_database_cursor.execute("SELECT * FROM users WHERE typeOfUser='teacher' AND username=(?)", (session.get("username"),)).fetchall()
+    #Checks to see if the user is logged in at all. If not, it will try to get the value from the tuple in a list returned. It will not be able to get this if there is no user as no tuple will be returned, resulting in an error. This try statement catches this.
+    try: 
+        user_teacher_check = user_teacher_check[0][0]
+    except: 
+        teachers_database.close()
+        return render_template("teachers-not-logged-in.html", username = session.get("username"))
 
-    for teacher_tuple in all_teachers:
-        all_teachers_list.append(teacher_tuple[0])
 
-    print(all_teachers_list)
+    if session.get("username") == user_teacher_check:
+        
+        #Gets all the students from the main database for use in the "students" part on the teachers' page.
+        all_users_database = sqlite3.connect("database/main.db")
+        all_users_database_cursor = all_users_database.cursor()
 
-    teachers_database.close()
+        all_students_list = [user[0] for user in all_users_database.execute("SELECT username FROM users WHERE typeOfUser='student'").fetchall()] #Puts all students from the database in a list, instead of the weird tuple format.
+        print(all_students_list)
 
-    return render_template("teachers.html", teachers = all_teachers_list, username = session.get("username"))
+        all_users_database.close()
+
+        teachers_database.close()
+        return render_template("teachers.html", username = session.get("username"), students = all_students_list)
+    else:
+        teachers_database.close()
+        return render_template("teachers-not-logged-in.html", username = session.get("username"))
+
 
 @app.route("/request-access-teachers")
 def request_access_teachers():
@@ -112,9 +127,9 @@ def create_account():
 
         #Inserts the entered data into the database as a new user. Generates a hash for the password in the process.
         db_cursor.execute("""INSERT INTO users 
-                      (username, password, ID, email, phoneNum, creationDate, lessonsOwned) 
-                      VALUES (?,?,?,?,?,?,?)"""
-                      , (data.get("username"), password, current_ID, email, phoneNum, date, 0))
+                      (username, password, ID, email, phoneNum, creationDate, lessonsOwned, typeOfUser) 
+                      VALUES (?,?,?,?,?,?,?,?)"""
+                      , (data.get("username"), password, current_ID, email, phoneNum, date, 0, "student"))
 
 
         #Saves the changes

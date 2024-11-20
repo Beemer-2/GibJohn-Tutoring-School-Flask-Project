@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Please Log-in{% endblock %}
+{% block css_link %}<link rel="stylesheet" href="../static/teachers-not-logged-in-styles.css">{% endblock %}
+{% block content %}
+
+{% if not username and username is not defined or username == None %}
+<div class="error-container">
+    <p>Please <a href="log-in-sign-up-page">log-in</a> to visit this page</p>
+</div>
+{% else %}
+<div class="error-container">
+    <p>You are not signed-in to a teachers account. Please sign-in to one or <a href="request-access-teachers">request-access</a>.</p>
+</div>
+{% endif %}
+{% endblock %}

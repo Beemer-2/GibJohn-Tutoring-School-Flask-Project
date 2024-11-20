@@ -13,11 +13,14 @@ def main():
 
     for user_tuple in requests_database_cursor.execute("SELECT * FROM requested").fetchall():
         if user in user_tuple:
-            teachers_database = sqlite3.connect("database/teachers.db")
-            teachers_database_cursor = teachers_database.cursor()    
-            teachers_database_cursor.execute("INSERT INTO teachers (username) VALUES (?)", (user,))
+            #change this
+            main_database = sqlite3.connect("database/main.db")
+            main_database_cursor = main_database.cursor()    
+            main_database_cursor.execute("UPDATE users SET typeOfUser='teacher' WHERE username=(?)", (user,))
             print("added successfully")
-            teachers_database.commit()
+            main_database.commit()
+            requests_database_cursor.execute("DELETE FROM requested WHERE username=(?)", (user,))
+            requests_database.commit()
 
         else:
             print("That user is not in the request database!")
@@ -25,12 +28,12 @@ def main():
     requests_database.close()
 
 def show_all_teachers():
-    database = sqlite3.connect("database/teachers.db")
+    database = sqlite3.connect("database/main.db")
     database_cursor = database.cursor()
 
-    print(database_cursor.execute("SELECT * FROM teachers").fetchall())
+    print(database_cursor.execute("SELECT * FROM users WHERE typeOfUser='teacher'").fetchall())
 
     database.close()
 
-
 main()
+show_all_teachers()
