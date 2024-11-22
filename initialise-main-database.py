@@ -44,4 +44,4 @@ def lesson_learners_set_up():
 # initialise_database()
 # select_all()
 
-lesson_learners_set_up()
+##lesson_learners_set_up()
