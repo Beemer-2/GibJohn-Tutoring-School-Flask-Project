@@ -7,23 +7,33 @@
     <div class="seperate">
         <h2>Lessons</h2>
         <div>
-            {% for lesson in lessons_owned %}
-            <h3>Lorem, ipsum.</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur ex quam provident a.</p>
-            {% endfor %}
+            <div class="flex-course">
+                <h3>Lorem, ipsum dolor.</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
+                <a class="unlock" href="/unlock-lesson<lesson_one>">Unlock</a>
+            </div>
+            <div class="flex-course">
+                <h3>Lorem, ipsum dolor.</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
+                <a class="unlock" href="/unlock-lesson<lesson_two>">Unlock</a>
+            </div>
+            <div class="flex-course">
+                <h3>Lorem, ipsum dolor.</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
+                <a class="unlock" href="/unlock-lesson<lesson_three>">Unlock</a>
+            </div>
         </div>
     </div>
     <div class="seperate" id="lessons-owned">
         <h2>Lessons owned</h2>
         <div>
+            {% for lesson in lessons_owned %}
             <h3>Lorem, ipsum.</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur ex quam provident a.</p>
-            <h3>Lorem, ipsum.</h3>
-            <p>Quibusdam, quasi. Nostrum debitis maxime dolore ipsam. Veniam exercitationem accusantium expedita ea hic et.</p>
-            <h3>Lorem, ipsum.</h3>
-            <p>Quasi id molestias modi! Reiciendis impedit tenetur totam veritatis atque odit maiores in officia.</p>
-            <h3>Lorem, ipsum.</h3>
-            <p>Quae iure rerum magni maiores, consequatur error quibusdam, placeat delectus, similique asperiores ab tenetur.</p>
+            {% endfor %}
+            {% if lessons_owned|length == 0 %}
+            <h3 id="no-lessons">You own no lessons</h3>
+            {% endif %}
         </div>
     </div>
 </div>

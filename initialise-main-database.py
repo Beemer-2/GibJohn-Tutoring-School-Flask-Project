@@ -37,6 +37,8 @@ def lesson_learners_set_up():
     database = sqlite3.connect("database/main.db")
     db_cursor = database.cursor()
     db_cursor.execute("CREATE TABLE lessonOne (username VARCHAR UNIQUE)")
+    db_cursor.execute("CREATE TABLE lessonTwo (username VARCHAR UNIQUE)")
+    db_cursor.execute("CREATE TABLE lessonThree (username VARCHAR UNIQUE)")
     database.commit()
     database.close()
 
@@ -44,4 +46,4 @@ def lesson_learners_set_up():
 # initialise_database()
 # select_all()
 
-##lesson_learners_set_up()
+lesson_learners_set_up()

@@ -34,9 +34,30 @@ def about():
 @app.route("/lessons")
 def lessons():
     if session.get("username"):
-        return render_template("lessons.html", username = session.get("username"))
+
+        main_database = sqlite3.connect("database/main.db")
+        main_database_cursor = main_database.cursor()
+        lessons = main_database_cursor.execute("SELECT username FROM lessonOne").fetchall()
+        lessons+main_database_cursor.execute("SELECT username FROM lessonTwo").fetchall()
+        lessons+main_database_cursor.execute("SELECT username FROM lessonThree").fetchall()
+        print(lessons, "lessons")
+        #TEST THIS FrOM HERE
+
+        main_database.close()
+    
+
+        return render_template("lessons.html", username = session.get("username"), lessons_owned = lessons)
     else:
         return render_template("lessons-error.html")
+
+@app.route("/unlock-lesson/<lesson>")
+def unlock_lesson(lesson):
+    match lesson:
+        case "lessonOne":
+            return render_template("lesson-bought.html", lesson=lesson)
+
+        case _:
+            return render_template("")
 
 @app.route("/teachers")
 def teachers():

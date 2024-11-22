@@ -28,7 +28,7 @@
 
 h3 {
     margin-bottom: 2px;
-    margin-left: 4px;
+
 }
 
 h2 {
@@ -41,4 +41,22 @@ h2 {
 
 #lessons-owned {
     min-width: 40vw;
+}
+
+#no-lessons {
+    margin: 2px;
+}
+
+.unlock {
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: #798546;
+    text-align: center;
+}
+
+.flex-course {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
 }
