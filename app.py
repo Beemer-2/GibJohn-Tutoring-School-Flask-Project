@@ -7,6 +7,7 @@
 ##Flask-session
 ##bcrypt
 
+
 #Imports all necessary modules
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_session import Session
@@ -32,7 +33,10 @@ def about():
 
 @app.route("/lessons")
 def lessons():
-    return render_template("lessons.html", username = session.get("username"))
+    if session.get("username"):
+        return render_template("lessons.html", username = session.get("username"))
+    else:
+        return render_template("lessons-error.html")
 
 @app.route("/teachers")
 def teachers():

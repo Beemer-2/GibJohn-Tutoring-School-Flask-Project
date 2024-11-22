@@ -33,6 +33,13 @@ def select_all():
     print(db_cursor.fetchall())
 
 
+def lesson_learners_set_up():
+    database = sqlite3.connect("database/main.db")
+    db_cursor = database.cursor()
+    db_cursor.execute("CREATE TABLE lessonOne")
+    database.commit()
+    database.close()
+
 create_database()
 initialise_database()
 select_all()

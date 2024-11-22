@@ -1,8 +1,9 @@
 #main-container {
     background-color: #5e6b45;
     padding: 4px;
-    width: 80vw;
-    margin: 10vw;
+    width: 60vw;
+    margin: 28svh 20vw;
+    margin-bottom: 0;
     border-radius: 12px;
     display: flex;
     color: whitesmoke
@@ -25,6 +26,10 @@
     border-radius: 7px;
 }
 
+h3 {
+    margin-bottom: 2px;
+    margin-left: 4px;
+}
 
 h2 {
     margin-top: 6px;
@@ -35,5 +40,5 @@ h2 {
 }
 
 #lessons-owned {
-    min-width: 54vw;
+    min-width: 40vw;
 }
