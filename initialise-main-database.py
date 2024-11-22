@@ -36,10 +36,12 @@ def select_all():
 def lesson_learners_set_up():
     database = sqlite3.connect("database/main.db")
     db_cursor = database.cursor()
-    db_cursor.execute("CREATE TABLE lessonOne")
+    db_cursor.execute("CREATE TABLE lessonOne (username VARCHAR UNIQUE)")
     database.commit()
     database.close()
 
-create_database()
-initialise_database()
-select_all()
+# create_database()
+# initialise_database()
+# select_all()
+
+lesson_learners_set_up()
