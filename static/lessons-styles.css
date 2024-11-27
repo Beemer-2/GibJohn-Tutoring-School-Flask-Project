@@ -60,3 +60,14 @@ h2 {
     flex-direction: column;
     margin: 8px;
 }
+
+
+
+#no-more-lessons {
+    font-size: x-large;
+}
+
+#no-more-lessons > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}

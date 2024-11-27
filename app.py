@@ -31,33 +31,183 @@ def home():
 def about():
     return render_template("about.html", username = session.get("username"))
 
+
+@app.route("/admins")
+def admins():
+    main_database = sqlite3.connect("database/main.db")
+    main_database_cursor = main_database.cursor()
+    if session.get("username"):
+        
+
+
+
+
+    else:
+        return render_template("not-logged-in-error.html")
+
+
+
+@app.route("/open-lesson/<lesson>")
+def open_lesson(lesson):
+    main_database = sqlite3.connect("database/main.db")
+    main_database_cursor = main_database.cursor()
+
+    #Checks to see if the user is still logged in, or manually entered the URL to try and hack it. If they did it returns an error page.
+    if session.get("username"):
+        username = session.get("username")
+
+        #Matches the lesson with the lesson chosen
+        if lesson == "lesson_one":
+
+            print(main_database_cursor.execute("SELECT username FROM lessonOne WHERE username = (?)", (username,)).fetchall())
+
+            #Checks to see if the user has access to the page.
+            #If they don't an error page is shown.
+            selected = main_database_cursor.execute("SELECT username FROM lessonOne WHERE username = (?)", (username,)).fetchall()[0][0]
+            main_database_cursor.close()
+            main_database.close()
+            if username in selected:
+
+                return render_template("lesson-one.html", username = session.get("username"))
+            else:
+                return render_template("no-access.html")
+        
+        elif lesson == "lesson_two":
+
+            print(main_database_cursor.execute("SELECT username FROM lessonTwo WHERE username = (?)", (username,)).fetchall())
+
+            selected = main_database_cursor.execute("SELECT username FROM lessonTwo WHERE username = (?)", (username,)).fetchall()[0][0]
+            main_database_cursor.close()
+            main_database.close()
+            if username in selected:
+                return render_template("lesson-two.html", username = session.get("username"))
+            else:
+                return render_template("no-access.html")
+
+        elif lesson == "lesson_three":
+
+            print(main_database_cursor.execute("SELECT username FROM lessonThree WHERE username = (?)", (username,)).fetchall())
+
+            selected = main_database_cursor.execute("SELECT username FROM lessonTwo WHERE username = (?)", (username,)).fetchall()[0][0]
+            main_database_cursor.close()
+            main_database.close()
+            if username in selected:
+                return render_template("lesson-three.html", username = session.get("username"))
+            else:
+                return render_template("no-access.html")
+
+        else:
+            return render_template("lesson-unavailable.html")
+        
+
+
+
+    else:
+        return render_template("not-log-in-error.html")
+
+
+#Main lessons page
 @app.route("/lessons")
 def lessons():
     if session.get("username"):
 
+        username = session.get("username")
+        print(username)
+        
+        lessons_array = []
+
         main_database = sqlite3.connect("database/main.db")
         main_database_cursor = main_database.cursor()
-        lessons = main_database_cursor.execute("SELECT username FROM lessonOne").fetchall()
-        lessons+main_database_cursor.execute("SELECT username FROM lessonTwo").fetchall()
-        lessons+main_database_cursor.execute("SELECT username FROM lessonThree").fetchall()
-        print(lessons, "lessons")
-        #TEST THIS FrOM HERE
+        print(main_database_cursor.execute("SELECT username FROM lessonOne WHERE username = (?)", (username,)).fetchall())
+        if len(main_database_cursor.execute("SELECT username FROM lessonOne WHERE username = (?)", (username,)).fetchall()) > 0:
+            lessons_array.append("lesson_one")
+        if len(main_database_cursor.execute("SELECT username FROM lessonTwo WHERE username = (?)", (username,)).fetchall()) > 0:
+            lessons_array.append("lesson_two")
+        if len(main_database_cursor.execute("SELECT username FROM lessonThree WHERE username = (?)", (username,)).fetchall()) > 0:
+            lessons_array.append("lesson_three")
+        print(lessons_array, "lessons")
 
         main_database.close()
-    
 
-        return render_template("lessons.html", username = session.get("username"), lessons_owned = lessons)
+
+        print(len(lessons_array))
+
+
+        return render_template("lessons.html", username = session.get("username"), lessons_owned = lessons_array)
     else:
-        return render_template("lessons-error.html")
+        return render_template("not-logged-in-error.html")
 
-@app.route("/unlock-lesson/<lesson>")
+@app.route("/unlock-lesson/<lesson>", methods=["GET"])
 def unlock_lesson(lesson):
+
+    #Opens the database and sets up the cursor
+    main_database = sqlite3.connect("database/main.db")
+    main_database_cursor = main_database.cursor()
+
+
+    #Gives an error page if users are not logged in
+    def return_not_logged_in():
+        return render_template("not-logged-in-error.html")
+
+
+    #Closes the database and cursor. This is in a function, so it can be called numerous times
+    def close_database():
+        main_database_cursor.close()
+        main_database.close()
+
+
+
     match lesson:
-        case "lessonOne":
+        case "lesson_one":
+
+            #Redundancy to ensure that a user hasn't somehow logged out in the unlocking process
+            try:
+                main_database_cursor.execute("INSERT INTO lessonOne (username) VALUES (?)", (session.get("username"),)) #Logs the user which bought the lesson
+            except:
+                return_not_logged_in()
+
+            #Commits changes and closes the database
+            main_database.commit()
+            close_database()
+
             return render_template("lesson-bought.html", lesson=lesson)
 
+        case "lesson_two":
+            
+            #Redundancy to ensure that a user hasn't somehow logged out in the unlocking process
+            try:
+                main_database_cursor.execute("INSERT INTO lessonTwo (username) VALUES (?)", (session.get("username"),)) #Logs the user which bought the lesson
+            except:
+                return_not_logged_in()
+
+            #Commits changes and closes the database
+            main_database.commit()
+            close_database()
+
+            return render_template("lesson-bought.html", lesson=lesson)
+
+        case "lesson_three":
+            
+            #Redundancy to ensure that a user hasn't somehow logged out in the unlocking process
+            try:
+                main_database_cursor.execute("INSERT INTO lessonThree (username) VALUES (?)", (session.get("username"),)) #Logs the user which bought the lesson
+            except:
+                return_not_logged_in()
+
+            #Commits changes and closes the database
+            main_database.commit()
+            close_database()
+
+            return render_template("lesson-bought.html", lesson=lesson)
+
+        
+        #Returns the user to the lesson unavailable page in the case of an invalid lesson being chosen
+        #The underscore runs when there are no other cases to run
         case _:
-            return render_template("")
+            close_database()
+            return render_template("lesson-unavailable.html")
+    
+
 
 @app.route("/teachers")
 def teachers():

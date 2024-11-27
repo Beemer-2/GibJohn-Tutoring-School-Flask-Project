@@ -1,8 +1,7 @@
 
 
 #main-div {
-    min-height: 36vh;
-    min-height: 36svh;
+    min-height: fit-content;
     max-height: fit-content;
     width: 90vw;
     border-radius: 20px;
@@ -12,8 +11,12 @@
     margin-right: auto;
     padding: 8px 20px;
     color: whitesmoke;
-    font-size: x-large;
+    font-size: xx-large;
 
+}
+
+h1 {
+    text-align: center;
 }
 
 main > div > p {
@@ -24,7 +27,7 @@ main > div > p {
     display: flex;
     justify-content: center;
     align-items: top;
-    gap: 10vw;
+    gap: 6vw;
     margin-bottom: 14vh;
     margin-bottom: 14svh;
 }

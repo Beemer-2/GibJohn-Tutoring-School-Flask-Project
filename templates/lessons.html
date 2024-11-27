@@ -7,21 +7,35 @@
     <div class="seperate">
         <h2>Lessons</h2>
         <div>
+            {% if lessons_owned|length == 3 %}
+            <div class="flex-course" id="no-more-lessons">
+                <p>There more are no lessons available to unlock</p>
+            </div>
+            {% endif %}
+            {% if lessons_owned[0] == "lesson_one" %}
+            {% else %}
             <div class="flex-course">
                 <h3>Lorem, ipsum dolor.</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
-                <a class="unlock" href="/unlock-lesson<lesson_one>">Unlock</a>
+                <a class="unlock" href="/unlock-lesson/lesson_one">Unlock</a>
             </div>
+            {% endif %}
+            {% if lessons_owned[1] == "lesson_two" %}
+            {% else %}
             <div class="flex-course">
                 <h3>Lorem, ipsum dolor.</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
-                <a class="unlock" href="/unlock-lesson<lesson_two>">Unlock</a>
+                <a class="unlock" href="/unlock-lesson/lesson_two">Unlock</a>
             </div>
+            {% endif %}
+            {% if lessons_owned[2] == "lesson_three" %}
+            {% else %}
             <div class="flex-course">
                 <h3>Lorem, ipsum dolor.</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste consequuntur pariatur nulla quas et!</p>
-                <a class="unlock" href="/unlock-lesson<lesson_three>">Unlock</a>
+                <a class="unlock" href="/unlock-lesson/lesson_three">Unlock</a>
             </div>
+            {% endif %}
         </div>
     </div>
     <div class="seperate" id="lessons-owned">
@@ -30,6 +44,7 @@
             {% for lesson in lessons_owned %}
             <h3>Lorem, ipsum.</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis tenetur ex quam provident a.</p>
+            <a href="/open-lesson/{{lesson}}">Go to lesson</a>
             {% endfor %}
             {% if lessons_owned|length == 0 %}
             <h3 id="no-lessons">You own no lessons</h3>

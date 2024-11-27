@@ -7,6 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="../static/layout-styles.css">
     <link rel="stylesheet" href="../static/global-css.css">
+    <link rel="icon" type="image/x-icon" href="/static/teacher-svgrepo-com.svg">
     {% block css_link %}{% endblock %}
     {% endblock %}
 </head>
@@ -16,18 +17,18 @@
         <nav>
             <div id="left-nav">
                 <ul><a href="/">home</a></ul>
-                <ul><a href="about">about</a></ul>
-                <ul><a href="lessons">lessons</a></ul>
-                <ul><a href="teachers">teachers</a></ul>
-                <ul><a href="">admins</a></ul>
+                <ul><a href="/about">about</a></ul>
+                <ul><a href="/lessons">lessons</a></ul>
+                <ul><a href="/teachers">teachers</a></ul>
+                <ul><a href="/admins">admins</a></ul>
             </div>
             <div id="right-nav">
                 {% if not username and username is not defined or username == None %}
-                <ul><a href="log-in-sign-up-page">log-in</a></ul>
-                <ul><a href="log-in-sign-up-page">sign-up</a></ul>
+                <ul><a href="/log-in-sign-up-page">log-in</a></ul>
+                <ul><a href="/log-in-sign-up-page">sign-up</a></ul>
                 {% else %}
                 <ul>Welcome, {{ username }}</ul>
-                <ul><a href="log-out">Log out</a></ul>
+                <ul><a href="/log-out">Log out</a></ul>
                 {% endif %}
             </div>
         </nav>
